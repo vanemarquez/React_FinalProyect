@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 interface FooterProps {
   parametro1: string;
 }

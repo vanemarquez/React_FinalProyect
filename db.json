@@ -29,7 +29,7 @@
             "name": "Familiar4",
             "price": 25.90,
             "description": "Combo Tosty Criollazo Power",
-            "image": "../../images/popeyes3.jpg",
+            "image": "../../images/popeyes4.jpg",
             "additionalDescription": "Promociones exclusivas web"
         },
         {
@@ -37,30 +37,46 @@
             "name": "Familiar5",
             "price": 85.90,
             "description": "Combo Tosty Criollazo Power 5",
-            "image": "../../images/popeyes4.jpg",
+            "image": "../../images/popeyes5.jpg",
+            "additionalDescription": "Promociones exclusivas web"
+        },
+        {
+            "id": 6,
+            "name": "Familiar6",
+            "price": 85.90,
+            "description": "Combo Tosty Criollazo Power 5",
+            "image": "../../images/popeyes6.jpg",
             "additionalDescription": "Promociones exclusivas web"
         }
     ],
     "menu": [
         {
             "id": 1,
-            "title": "Inicio",
-            "link": "/"
+            "title": "Promociones"
         },
         {
             "id": 2,
-            "title": "Productos",
-            "link": "/products"
+            "title": "Personales"
         },
         {
             "id": 3,
-            "title": "Servicios",
-            "link": "/services"
+            "title": "Dúos"
         },
         {
             "id": 4,
-            "title": "Contacto",
-            "link": "/contact"
+            "title": "Familiares"
+        },
+        {
+            "id": 5,
+            "title": "Banquetes"
+        },
+        {
+            "id": 6,
+            "title": "Sándwiches y Piqueos"
+        },
+        {
+            "id": 7,
+            "title": "Complementos"
         }
     ]
 }
