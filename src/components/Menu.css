@@ -1,0 +1,30 @@
+.menu {
+    background-color: #333;
+  }
+  
+  .menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Mostrar los elementos del menú en línea */
+  }
+  
+  .menu li {
+    margin-right: 20px; /* Espacio entre los elementos del menú */
+  }
+  
+  .menu li:last-child {
+    margin-right: 0; /* Eliminar el margen derecho del último elemento */
+  }
+  
+  .menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+  }
+  
+  .menu a:hover {
+    background-color: #555;
+  }
+  
