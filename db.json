@@ -1,82 +1,226 @@
 {
-    "products": [
-        {
-            "id": 1,
-            "name": "Familiar1",
-            "price": 59.90,
-            "description": "Promo Festi 6",
-            "image": "../../images/popeyes1.jpg",
-            "additionalDescription": "Promociones exclusivas web"
-        },
-        {
-            "id": 2,
-            "name": "Familiar2",
-            "price": 24.90,
-            "description": "Combo Tosty Rocoto",
-            "image": "../../images/popeyes2.jpg",
-            "additionalDescription": "Promociones exclusivas web"
-        },
-        {
-            "id": 3,
-            "name": "Familiar3",
-            "price": 27.90,
-            "description": "Combo Tosty Criollazo Power",
-            "image": "../../images/popeyes3.jpg",
-            "additionalDescription": "Promociones exclusivas web"
-        },
-        {
-            "id": 4,
-            "name": "Familiar4",
-            "price": 25.90,
-            "description": "Combo Tosty Criollazo Power",
-            "image": "../../images/popeyes4.jpg",
-            "additionalDescription": "Promociones exclusivas web"
-        },
-        {
-            "id": 5,
-            "name": "Familiar5",
-            "price": 85.90,
-            "description": "Combo Tosty Criollazo Power 5",
-            "image": "../../images/popeyes5.jpg",
-            "additionalDescription": "Promociones exclusivas web"
-        },
-        {
-            "id": 6,
-            "name": "Familiar6",
-            "price": 85.90,
-            "description": "Combo Tosty Criollazo Power 5",
-            "image": "../../images/popeyes6.jpg",
-            "additionalDescription": "Promociones exclusivas web"
-        }
-    ],
-    "menu": [
-        {
-            "id": 1,
-            "title": "Promociones"
-        },
-        {
-            "id": 2,
-            "title": "Personales"
-        },
-        {
-            "id": 3,
-            "title": "Dúos"
-        },
-        {
-            "id": 4,
-            "title": "Familiares"
-        },
-        {
-            "id": 5,
-            "title": "Banquetes"
-        },
-        {
-            "id": 6,
-            "title": "Sándwiches y Piqueos"
-        },
-        {
-            "id": 7,
-            "title": "Complementos"
-        }
-    ]
+  "products": [
+    {
+      "id": "1",
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "2",
+      "name": "Familiar2",
+      "price": 24.9,
+      "description": "Combo Tosty Rocoto",
+      "image": "../../images/popeyes2.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "3",
+      "name": "Familiar3",
+      "price": 27.9,
+      "description": "Combo Tosty Criollazo Power",
+      "adicional_description": "Descripción larga del producto",
+      "image": "../../images/popeyes3.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "4",
+      "name": "Familiar4",
+      "price": 25.9,
+      "description": "Combo Tosty Criollazo Power 1",
+      "image": "../../images/popeyes4.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "5",
+      "name": "Familiar5",
+      "price": 85.9,
+      "description": "Combo Tosty Criollazo Power 2",
+      "image": "../../images/popeyes5.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "6",
+      "name": "Familiar6",
+      "price": 85.9,
+      "description": "Combo Tosty Criollazo Power 3",
+      "image": "../../images/popeyes6.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    }
+  ],
+  "menu": [
+    {
+      "id": "1",
+      "title": "Promociones",
+      "link": "/promo"
+    },
+    {
+      "id": "2",
+      "title": "Personales",
+      "link": "/personales"
+    },
+    {
+      "id": "3",
+      "title": "Dúos",
+      "link": "/duos"
+    },
+    {
+      "id": "4",
+      "title": "Familiares",
+      "link": "/familiares"
+    },
+    {
+      "id": "5",
+      "title": "Banquetes",
+      "link": "/banquetes"
+    },
+    {
+      "id": "6",
+      "title": "Sándwiches y Piqueos",
+      "link": "/sandwiches"
+    },
+    {
+      "id": "7",
+      "title": "Complementos",
+      "link": "/complementos"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Vanessa",
+      "email": "vaneyz0302@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "2",
+      "name": "Rolando",
+      "email": "rolo25@gmail.com",
+      "password": "456"
+    }
+  ],
+  "category": [
+    {
+      "id": "1",
+      "name": "promociones"
+    },
+    {
+      "id": "2",
+      "name": "familiares"
+    },
+    {
+      "id": "3",
+      "name": "dúos"
+    }
+  ],
+  "categoryProduct": [
+    {
+      "idProduct": 1,
+      "idCategory": 1,
+      "id": "393e"
+    },
+    {
+      "idProduct": 2,
+      "idCategory": 2,
+      "id": "3170"
+    },
+    {
+      "idProduct": 3,
+      "idCategory": 2,
+      "id": "7123"
+    },
+    {
+      "idProduct": 4,
+      "idCategory": 3,
+      "id": "0fbb"
+    },
+    {
+      "idProduct": 5,
+      "idCategory": 1,
+      "id": "a6f4"
+    },
+    {
+      "idProduct": 6,
+      "idCategory": 1,
+      "id": "b821"
+    },
+    {
+      "idProduct": 7,
+      "idCategory": 3,
+      "id": "4bfa"
+    },
+    {
+      "idProduct": 8,
+      "idCategory": 2,
+      "id": "92a1"
+    }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "1",
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "1",
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "5",
+      "name": "Familiar5",
+      "price": 85.9,
+      "description": "Combo Tosty Criollazo Power 2",
+      "image": "../../images/popeyes5.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "1",
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "1",
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "1",
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    },
+    {
+      "id": "1",
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web"
+    }
+  ]
 }

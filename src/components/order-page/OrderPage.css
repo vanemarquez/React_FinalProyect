@@ -1,0 +1,47 @@
+/* OrderPage.css */
+.container {
+    margin-top: 20px;
+  }
+  
+  .card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .card-img-top {
+    max-height: 300px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    margin-bottom: 15px;
+  }
+  
+  .card-text small {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .card-text strong {
+    font-size: 1.2em;
+    color: #e91e63;
+  }
+  
+  .button-primary {
+    background-color: orange;
+    border: none;
+  }
+  
+  .button-primary:hover {
+    background-color: orange;
+  }
+  

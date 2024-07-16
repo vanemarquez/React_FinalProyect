@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import './ProductList.css'; // Asegúrate de importar tu archivo CSS
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import './ProductList.css';
+
 interface Product {
   id: number;
   name: string;
@@ -13,6 +15,7 @@ interface Product {
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:3000/products')
@@ -23,6 +26,10 @@ const ProductList: React.FC = () => {
         console.error('There was an error fetching the products!', error);
       });
   }, []);
+
+  const handleOrder = (product: Product) => {
+    navigate(`/order/${product.id}`, { state: { product } });
+  };
 
   return (
     <Container>
@@ -47,6 +54,7 @@ const ProductList: React.FC = () => {
                 <Card.Text>
                   <strong>S/.{product.price}</strong>
                 </Card.Text>
+                <Button variant="primary" onClick={() => handleOrder(product)}>Ordenar</Button>
               </Card.Body>
             </Card>
           </Col>
