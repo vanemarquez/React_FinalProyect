@@ -1,23 +1,33 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import axios from 'axios';
-import './OrderPage.css'; 
+import './OrderPage.css';
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  image: string;
+  additionalDescription: string;
+  quantity: number;
+}
 
 const OrderPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { product } = location.state as { product: { id: number, name: string, price: number, description: string, image: string, additionalDescription: string } };
+  const { product } = location.state as { product: Product };
+
+  const addToCart = (product: Product) => {
+    let cartItems: Product[] = JSON.parse(localStorage.getItem('cart') || '[]');
+    product.quantity = 1;
+    cartItems.push(product);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  };
 
   const handleConfirmProduct = () => {
-    axios.post('http://localhost:3000/cart', product)
-      .then(response => {
-        console.log('Producto añadido al carrito:', response.data);
-        navigate('/shoppingcart');
-      })
-      .catch(error => {
-        console.error('Hubo un error al añadir el producto al carrito:', error);
-      });
+    addToCart(product);
+    navigate('/shoppingcart');
   };
 
   return (
@@ -31,7 +41,8 @@ const OrderPage: React.FC = () => {
               <Card.Text>{product.description}</Card.Text>
               <Card.Text><small>{product.additionalDescription}</small></Card.Text>
               <Card.Text><strong>S/.{product.price}</strong></Card.Text>
-              <Button variant="primary" onClick={handleConfirmProduct}>Confirmar Producto</Button>
+              <Button variant="secondary" onClick={() => navigate(-1)} className="me-2">Regresar</Button>
+              <Button variant="primary" className="button-primary" onClick={handleConfirmProduct}>Confirmar Producto</Button>
             </Card.Body>
           </Card>
         </Col>

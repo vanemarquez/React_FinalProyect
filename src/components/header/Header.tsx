@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import './Header.css'; 
-import { Link } from 'react-router-dom';
-
+import './Header.css';
+import { useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const [userData, setUserData] = useState<{ username: string, email: string } | null>(null);
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(() => { //función de react para el evento onload.
     const userString = localStorage.getItem('user');
     if (userString) {
       const user = JSON.parse(userString);
       setUserData(user);
     }
   }, []);
+
+  const onClickPedido = () => { //evento
+    navigate(`/shoppingcart`);
+  };
+
+  const onLogout = () => { //evento
+    localStorage.removeItem('user');
+    setUserData(null);
+    navigate('/auth');
+  };
+
+  const iniciarSesion = () => { //evento
+    localStorage.removeItem('user');
+    setUserData(null);
+    navigate('/auth');
+  };
 
   return (
     <header className="header">
@@ -30,18 +46,34 @@ const Header: React.FC = () => {
         />
       </div>
       <div>
-      {userData ? (
-        <div>
-          <p>Nombre de usuario: {userData.username}</p>
-        </div>
-      ) : (
-        <Link to="/auth"> <p>Iniciar sesión</p></Link>
-      )}
-      
-     
+        {userData ? (
+          <div>
+            <p>Usuario: {userData.username}</p>
+            {/* <button className="header__button" onClick={onLogout}>Cerrar sesión</button> */}
+          </div>
+        ) : (
+          <a href="#" onClick={iniciarSesion}>
+          <img
+            src="../../../public/images/iniciar_sesion.png"
+            alt="Cerrar Sesión"
+          />
+        </a>
+
+        )}
+
+
       </div>
+
       <div className="header__cart">
-        <a href="#">
+        {userData ? (
+          <a href="#" onClick={onLogout}>
+            <img
+              src="../../../public/images/cerrar_sesion.png"
+              alt="Cerrar Sesión"
+            />
+          </a>
+        ) : null}
+        <a href="#" onClick={onClickPedido}>
           <img
             src="../../../public/images/carrito.png"
             alt="Ícono de carrito de compras"

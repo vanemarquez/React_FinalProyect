@@ -1,78 +1,99 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Image, Table, Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import './ShoppingCart.css'; // Importa el archivo CSS aquí
+import { useNavigate } from 'react-router-dom';
+import '../../components/shopping-cart/ShoppingCart.css';
 
-interface Cart {
-  idProduct: number;
-  idUsuario: string;
-  idOrder: number; // ID Pedido
-  idLinea: number; // ID Línea
+interface CartItem {
+  idPedido: number;
+  fecha: Date;
+  nuLinea: number;
   name: string;
+  quantity: number;
   price: number;
   description: string;
   image: string;
-  additionalDescription: string;
-  quantity: number;
+  idProduct: number;
+  id: number;
+  idUsuario: number;
 }
 
 const ShoppingCart: React.FC = () => {
-  const [cartItems, setCartItems] = useState<Cart[]>([]);
-  const navigate = useNavigate(); // Define useNavigate
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/cart')
-      .then(response => {
-        setCartItems(response.data);
-      })
-      .catch(error => {
-        console.error('Hubo un error al obtener los productos del carrito:', error);
-      });
+    const cartItemJSON = localStorage.getItem('cart');
+    if (cartItemJSON) {
+      const cartItemsFromStorage: CartItem[] = JSON.parse(cartItemJSON);
+      setCartItems(cartItemsFromStorage);
+    }
   }, []);
 
-  const handleQuantityChange = (idProduct: number, newQuantity: number) => {
-    setCartItems(prevItems => 
-      prevItems.map(item =>
-        item.idProduct === idProduct ? { ...item, quantity: newQuantity } : item
-      )
-    );
-    axios.patch(`http://localhost:3000/cart/${idProduct}`, { quantity: newQuantity })
-      .catch(error => {
-        console.error('Hubo un error al actualizar la cantidad:', error);
+  const handleQuantityChange = (index: number, newQuantity: number) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems[index] = { ...updatedCartItems[index], quantity: newQuantity };
+    setCartItems(updatedCartItems);
+    localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+  };
+
+  const handleRemoveItem = (index: number) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems.splice(index, 1);
+    setCartItems(updatedCartItems);
+    localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+  };
+
+  const handleCheckout = async () => {
+    try {
+      const lista: any[] = (await axios.get('http://localhost:3000/cart')).data;
+      console.log('lista', lista);
+      const usuario = localStorage.getItem("user");
+      const usuaJSON = usuario ? JSON.parse(usuario) : null;
+
+      let cartList: CartItem[] = [];
+      let linea = 1;
+
+      // Crear un conjunto para almacenar ids únicos
+      const idSet = new Set();
+
+      // Iterar sobre la lista y agregar cada id al conjunto
+      lista.forEach(item => {
+        idSet.add(item.id);
       });
-  };
 
-  const getSubtotal = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
-  };
+      // Obtener la cantidad de ids únicos
+      const uniqueCount = idSet.size + 1;
 
-  const getIgv = (subtotal: number) => {
-    return (subtotal * 0.18).toFixed(2);
-  };
-
-  const getTotal = (subtotal: number, igv: number) => {
-    return (subtotal + igv).toFixed(2);
-  };
-
-  const handleRemoveItem = (idProduct: number) => {
-    setCartItems(prevItems => 
-      prevItems.filter(item => item.idProduct !== idProduct)
-    );
-    axios.delete(`http://localhost:3000/cart/${idProduct}`)
-      .catch(error => {
-        console.error('Hubo un error al eliminar el producto:', error);
+      cartItems.forEach((e) => {
+        let item = { ...e }
+        item.id = uniqueCount;
+        item.nuLinea = linea++; //para explicar
+        item.idProduct = e.id;
+        item.idUsuario = usuaJSON.id;
+        item.fecha = new Date();
+        cartList.push(item);
       });
-  };
 
-  const subtotal = parseFloat(getSubtotal());
-  const igv = parseFloat(getIgv(subtotal));
-  const total = parseFloat(getTotal(subtotal, igv));
+      console.log('cartList', cartList);
+      // Realizar la solicitud POST al servidor JSON con los datos del carrito
+      //await axios.post('http://localhost:3000/cart', cartList);
+      await Promise.all(cartList.map(item => axios.post('http://localhost:3000/cart', item)));
+
+      // Limpiar el carrito local
+      localStorage.removeItem('cart');
+
+      // Redirigir a la página de resumen del pedido
+      navigate('/order-detail');
+    } catch (error) {
+      console.error('Error al procesar el pedido:', error);
+    }
+  };
 
   return (
     <Container>
       <Row className="title-container">
-        <h2>Carrito de Compras</h2>
+        <h2>Listado de Compras</h2>
       </Row>
       <Row>
         <Table striped bordered hover>
@@ -83,60 +104,45 @@ const ShoppingCart: React.FC = () => {
               <th>Cantidad</th>
               <th>Precio</th>
               <th>Subtotal</th>
-              <th>ID Pedido</th>
-              <th>ID Línea</th>
-              <th>ID Usuario</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
-            {cartItems.map(item => (
-              <tr key={`${item.idOrder}-${item.idLinea}`}>
+            {cartItems.map((item, index) => (
+              <tr key={index}>
                 <td><Image src={item.image} thumbnail width={100} /></td>
                 <td>{item.name}</td>
                 <td>
-                  <Form.Control 
-                    type="number" 
-                    value={item.quantity} 
+                  <Form.Control
+                    type="number"
+                    value={item.quantity}
                     min="1"
-                    onChange={(e) => handleQuantityChange(item.idProduct, parseInt(e.target.value))}
+                    onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
                   />
                 </td>
                 <td>S/.{item.price.toFixed(2)}</td>
                 <td>S/.{(item.price * item.quantity).toFixed(2)}</td>
-                
-                {/* <td>{item.idOrder}</td> */} {/* Mostrar ID Pedido */}
-                {/*<td>{item.idLinea}</td> */}{/* Mostrar ID Línea */}
-                {/*<td>{item.idUsuario}</td> */}{/* Mostrar ID Usuario */}
                 <td>
-                  <Button 
-                    variant="danger" 
-                    onClick={() => handleRemoveItem(item.idProduct)}
+                  <Button
+                    variant="danger"
+                    className="custom-remove-button"
+                    onClick={() => handleRemoveItem(index)}
                   >
                     Eliminar
                   </Button>
+
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
       </Row>
-      <Row className="subtotal-container justify-content-end">
-        <Col xs="auto">
-          <h4>Subtotal: S/.{subtotal.toFixed(2)}</h4>
-        </Col>
-      </Row>
-      <Row className="igv-container justify-content-end">
-        <Col xs="auto">
-          <h4>IGV (18%): S/.{igv.toFixed(2)}</h4>
-        </Col>
-      </Row>
-      <Row className="total-container justify-content-end">
-        <Col xs="auto">
-          <h4>Total: S/.{total.toFixed(2)}</h4>
-        </Col>
-      </Row>
       <Row>
-        <Button variant="secondary" onClick={() => navigate(-1)}>Regresar</Button>
+        <Col className="text-right">
+        <Button variant="secondary" className="custom-back-button" onClick={() => navigate(-2)}>Regresar</Button>{' '}
+<Button variant="primary" className="custom-confirm-button" onClick={handleCheckout}>Confirmar Pedido</Button>
+
+        </Col>
       </Row>
     </Container>
   );

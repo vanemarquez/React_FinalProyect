@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './AuthForm.css'; 
 
 interface User {
+  id: number;
   name: string;
   email: string;
   password: string;
@@ -36,7 +37,7 @@ const AuthForm: React.FC = () => {
 
       if (user) {
         console.log('Usuario autenticado:', user);
-        const userData = {username: user.name, email: user.email}; // Tipificación de userData
+        const userData = {id: user.id, username: user.name, email: user.email}; // Tipificación de userData
         // Guardar los datos del usuario en localStorage
         localStorage.setItem('user', JSON.stringify(userData));
         // Redirigir a la pantalla principal

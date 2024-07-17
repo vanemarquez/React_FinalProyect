@@ -80,11 +80,6 @@
       "id": "6",
       "title": "Sándwiches y Piqueos",
       "link": "/sandwiches"
-    },
-    {
-      "id": "7",
-      "title": "Complementos",
-      "link": "/complementos"
     }
   ],
   "users": [
@@ -101,61 +96,110 @@
       "password": "456"
     }
   ],
-  "category": [
+  "cart": [
     {
       "id": "1",
-      "name": "promociones"
+      "name": "Familiar1",
+      "price": 59.9,
+      "description": "Promo Festi 6",
+      "image": "../../images/popeyes1.jpg",
+      "additionalDescription": "Promociones exclusivas web",
+      "quantity": 1,
+      "nuLinea": 1,
+      "idProduct": "1",
+      "idUsuario": "1",
+      "fecha": "2024-07-17T17:03:22.688Z"
     },
     {
-      "id": "2",
-      "name": "familiares"
+      "id": "1",
+      "name": "Familiar2",
+      "price": 24.9,
+      "description": "Combo Tosty Rocoto",
+      "image": "../../images/popeyes2.jpg",
+      "additionalDescription": "Promociones exclusivas web",
+      "quantity": 1,
+      "nuLinea": 2,
+      "idProduct": "2",
+      "idUsuario": "1",
+      "fecha": "2024-07-17T17:03:22.688Z"
     },
     {
-      "id": "3",
-      "name": "dúos"
+      "id": 2,
+      "name": "Familiar2",
+      "price": 24.9,
+      "description": "Combo Tosty Rocoto",
+      "image": "../../images/popeyes2.jpg",
+      "additionalDescription": "Promociones exclusivas web",
+      "quantity": 1,
+      "nuLinea": 1,
+      "idProduct": "2",
+      "idUsuario": "1",
+      "fecha": "2024-07-17T22:33:45.736Z"
+    },
+    {
+      "id": 2,
+      "name": "Familiar2",
+      "price": 24.9,
+      "description": "Combo Tosty Rocoto",
+      "image": "../../images/popeyes2.jpg",
+      "additionalDescription": "Promociones exclusivas web",
+      "quantity": 1,
+      "nuLinea": 2,
+      "idProduct": "2",
+      "idUsuario": "1",
+      "fecha": "2024-07-17T22:33:45.736Z"
+    },
+    {
+      "id": 3,
+      "name": "Familiar5",
+      "price": 85.9,
+      "description": "Combo Tosty Criollazo Power 2",
+      "image": "../../images/popeyes5.jpg",
+      "additionalDescription": "Promociones exclusivas web",
+      "quantity": 1,
+      "nuLinea": 1,
+      "idProduct": "5",
+      "idUsuario": "1",
+      "fecha": "2024-07-17T22:34:01.015Z"
+    },
+    {
+      "id": 4,
+      "name": "Familiar5",
+      "price": 85.9,
+      "description": "Combo Tosty Criollazo Power 2",
+      "image": "../../images/popeyes5.jpg",
+      "additionalDescription": "Promociones exclusivas web",
+      "quantity": 1,
+      "nuLinea": 1,
+      "idProduct": "5",
+      "idUsuario": "1",
+      "fecha": "2024-07-17T22:36:44.159Z"
+    },
+    {
+      "id": 5,
+      "name": "Familiar2",
+      "price": 24.9,
+      "description": "Combo Tosty Rocoto",
+      "image": "../../images/popeyes2.jpg",
+      "additionalDescription": "Promociones exclusivas web",
+      "quantity": 1,
+      "nuLinea": 1,
+      "idProduct": "2",
+      "idUsuario": "1",
+      "fecha": "2024-07-17T22:37:12.591Z"
+    },
+    {
+      "id": 6,
+      "name": "Familiar2",
+      "price": 24.9,
+      "description": "Combo Tosty Rocoto",
+      "image": "../../images/popeyes2.jpg",
+      "additionalDescription": "Promociones exclusivas web",
+      "quantity": 1,
+      "nuLinea": 1,
+      "idProduct": "2",
+      "idUsuario": "1",
+      "fecha": "2024-07-17T22:38:30.703Z"
     }
-  ],
-  "categoryProduct": [
-    {
-      "idProduct": 1,
-      "idCategory": 1,
-      "id": "393e"
-    },
-    {
-      "idProduct": 2,
-      "idCategory": 2,
-      "id": "3170"
-    },
-    {
-      "idProduct": 3,
-      "idCategory": 2,
-      "id": "7123"
-    },
-    {
-      "idProduct": 4,
-      "idCategory": 3,
-      "id": "0fbb"
-    },
-    {
-      "idProduct": 5,
-      "idCategory": 1,
-      "id": "a6f4"
-    },
-    {
-      "idProduct": 6,
-      "idCategory": 1,
-      "id": "b821"
-    },
-    {
-      "idProduct": 7,
-      "idCategory": 3,
-      "id": "4bfa"
-    },
-    {
-      "idProduct": 8,
-      "idCategory": 2,
-      "id": "92a1"
-    }
-  ],
-  "cart": []
+  ]
 }

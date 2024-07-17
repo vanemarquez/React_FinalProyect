@@ -9,6 +9,7 @@ import Menu from './components/menu/Menu';
 import AuthForm from './components/authentication/AuthForm';
 import OrderPage from './components/order-page/OrderPage';
 import ShoppingCart from './components/shopping-cart/ShoppingCart';
+import OrderDetail from './components/order-detail/OrderDetail';
 
 const MainContent: React.FC = () => {
   return (
@@ -17,14 +18,14 @@ const MainContent: React.FC = () => {
       <CarouselComponent />
       <Menu />
       <ProductList />
-      <Footer parametro1="Mi Aplicación" />
+      <Footer />
     </>
   );
 };
 
 const AppContent: React.FC = () => {
   const location = useLocation();
-  console.log('location.pathname', location.pathname);
+  //console.log('location.pathname', location.pathname);
   const isAuthRoute = location.pathname === '/auth';
   
   let content;
@@ -48,6 +49,7 @@ const App: React.FC = () => {
         <Route path="/*" element={<AppContent />} />
         <Route path="/order/:id" element={<OrderPage />} />
         <Route path="/shoppingcart" element={<ShoppingCart />} />
+        <Route path="/order-detail" element={<OrderDetail />} />
       </Routes>
     </Router>
   );
